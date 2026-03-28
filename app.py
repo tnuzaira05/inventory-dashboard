@@ -8,9 +8,15 @@ st.title("Inventory Turnover & Stockout Risk Dashboard")
 st.write("This dashboard analyzes product movement, turnover, and stockout risk from uploaded sales data.")
 
 uploaded_file = st.file_uploader("Upload your CSV file", type=["csv"])
+use_sample = st.button("Use Sample Dataset")
+
+df = None
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
+
+elif use_sample:
+    df = pd.read_csv("Online Sales Data.csv")
 
     required_cols = ['Product Name', 'Product Category', 'Units Sold', 'Unit Price', 'Date']
     missing_cols = [col for col in required_cols if col not in df.columns]

@@ -10,12 +10,9 @@ st.write("This dashboard analyzes product movement, turnover, and stockout risk 
 uploaded_file = st.file_uploader("Upload your CSV file", type=["csv"])
 use_sample = st.button("Use Sample Dataset")
 
-df = None
-
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
-
-elif use_sample:
+else:
     df = pd.read_csv("Online Sales Data.csv")
 
     required_cols = ['Product Name', 'Product Category', 'Units Sold', 'Unit Price', 'Date']
